@@ -6,7 +6,7 @@
     html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif}
     .page-bg{
     min-height:100%;
-    background-image:url('images/dragon-bg.jpg');
+    background-image:url('flame.jpg');
     background-size:cover;
     background-position:center;
     display:flex;
@@ -14,7 +14,11 @@
     justify-content:center;
     padding:40px 16px;
     }
-    .container{max-width:900px;margin:0 auto;padding:20px}
+    .container{max-width:900px;margin:0 auto;padding:20px
+    background:rgba(255,255,255,0.8);
+    border-radius:8px;
+    box-shadow:0 0 12px rgba(0,0,0,0.3);
+    }
     .form-wrap{
     width:var(--form-width);
     background:var(--form-bg);
@@ -33,7 +37,7 @@
     .inline{display:flex;gap:12px;align-items:center}
     .inline label{display:inline-block;margin:0}
     .dragon-data legend, .account legend{font-weight:700}
-    .account{background:#f3f9ff;border:1px solid rgba(0,0,0,0.15);padding:12px;margin-top:12px}
+    .account{background:#ff0000;border:1px solid rgba(0,0,0,0.15);padding:12px;margin-top:12px}
     .hint{display:block;color:#333;font-size:0.9em}
     .checkbox{display:flex;align-items:center;gap:8px}
     .form-actions{display:flex;gap:12px;margin-top:14px}
