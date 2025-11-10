@@ -1,0 +1,53 @@
+:root{
+    --form-width:600px;
+    --form-bg:#cfe8ff; /* modrá barva formuláře */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Arial,Helvetica,sans-serif}
+    .page-bg{
+    min-height:100%;
+    background-image:url('images/dragon-bg.jpg');
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 16px;
+    }
+    .container{max-width:900px;margin:0 auto;padding:20px}
+    .form-wrap{
+    width:var(--form-width);
+    background:var(--form-bg);
+    border:2px solid black;
+    padding:20px;
+    border-radius:8px;
+    }
+    form label{display:block;margin-bottom:12px}
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="date"],
+    form input[type="number"],
+    form input[type="file"],
+    form select{width:100%;padding:8px;margin-top:6px}
+    .inline{display:flex;gap:12px;align-items:center}
+    .inline label{display:inline-block;margin:0}
+    .dragon-data legend, .account legend{font-weight:700}
+    .account{background:#f3f9ff;border:1px solid rgba(0,0,0,0.15);padding:12px;margin-top:12px}
+    .hint{display:block;color:#333;font-size:0.9em}
+    .checkbox{display:flex;align-items:center;gap:8px}
+    .form-actions{display:flex;gap:12px;margin-top:14px}
+    .form-actions button{padding:10px 16px;border-radius:6px;border:1px solid #333;background:#fff;cursor:pointer}
+    .button{display:inline-block;padding:8px 12px;background:#0077cc;color:#fff;border-radius:6px;text-decoration:none}
+    .note{font-size:0.9em;color:#222;margin-top:12px}
+    header h1{margin:0 0 8px 0}
+    footer{margin-top:16px;font-size:0.9em}
+    
+    
+    /* zajistíme, že input color bude viditelný minimálně 40x40 */
+    input[type="color"]{width:48px;height:48px;padding:0;border:1px solid #000}
+    
+    
+    @media (max-width:640px){
+    .form-wrap{width:100%}
+    }

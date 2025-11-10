@@ -1,0 +1,152 @@
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Přihláška do soutěže draků</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-bg">
+<main class="form-wrap">
+<header>
+<h1>Přihláška — soutěž draků</h1>
+<p><a href="index.html">Zpět na informace</a></p>
+</header>
+
+
+<form id="dragonForm" action="mailto:competition@dragons.cz" method="post" enctype="text/plain" novalidate>
+<fieldset class="dragon-data">
+<legend>Údaje o drakovi</legend>
+
+
+<label for="name">Jméno draka <span aria-hidden="true">*</span>
+<input id="name" name="name" type="text" required>
+</label>
+
+
+<fieldset class="inline">
+<legend>Pohlaví</legend>
+<label><input type="radio" name="gender" value="samec" checked> Samec</label>
+<label><input type="radio" name="gender" value="samice"> Samice</label>
+<label><input type="radio" name="gender" value="neurceno"> Neuvedeno</label>
+</fieldset>
+
+
+<label for="birthdate">Datum narození <span aria-hidden="true">*</span>
+<input id="birthdate" name="birthdate" type="date" required>
+<small class="hint">Drak musí mít alespoň 10 let.</small>
+</label>
+
+
+<label for="scales">Barva šupin
+<input id="scales" name="scales" type="color" style="width:48px;height:48px;" aria-label="Barva šupin">
+</label>
+
+
+<label for="eaten">Počet sežraných osob
+<input id="eaten" name="eaten" type="number" min="0" max="1000" step="1" value="0" required>
+</label>
+
+
+<label for="flame">Délka ohnivého dechu (m)
+<input id="flame" name="flame" type="range" min="0" max="100" value="0">
+<output for="flame" id="flameOut">0 m</output>
+</label>
+
+
+<label class="checkbox"><input id="cert" name="cert" type="checkbox"> Certifikát nehořlavosti</label>
+
+
+<label for="flightCode">Letový kód draka
+<input id="flightCode" name="flightCode" type="text" pattern="^[A-Z]{2}-\d{1,7}[A-Z]?$" placeholder="CZ-48P" required>
+<small class="hint">Formát: XX-<číslo><volitelně písmeno>, např. CZ-48P</small>
+</label>
+
+
+<label for="image">Obrázek draka
+<input id="image" name="image" type="file" accept="image/*" required>
+<small class="hint">Přijímáme pouze obrázky.</small>
+</label>
+
+
+<label for="disciplines">Disciplíny (vyberte více s Ctrl)
+<select id="disciplines" name="disciplines" multiple size="3">
+<option value="fire-target">Plivání ohně na cíl</option>
+<option value="loudest-roar">Nejhlasitější řev</option>
+<option value="volcano-flight">Let mezi sopkami</option>
+</select>
+</label>
+
+
+</fieldset>
+</label>
+<label for="password">Heslo (povinné)
+<input id="password" name="password" type="password" required>
+</label>
+</fieldset>
+
+
+<div class="form-actions">
+<button type="submit">Odeslat přihlášku</button>
+<button type="reset">Reset</button>
+</div>
+
+
+<p class="note">Poznámka: výsledky se přijímají na email organizátora. Do středy je prosím přepošlete na <a href="mailto:mjirik@spskt.cz">mjirik@spskt.cz</a>.</p>
+</form>
+</main>
+</div>
+
+
+<script>
+// základní klientská validace
+(function(){
+const form = document.getElementById('dragonForm');
+const birth = document.getElementById('birthdate');
+const flame = document.getElementById('flame');
+const flameOut = document.getElementById('flameOut');
+const image = document.getElementById('image');
+
+
+flame.addEventListener('input', ()=> flameOut.textContent = flame.value + ' m');
+
+
+form.addEventListener('submit', function(e){
+// věk >= 10 let
+const b = new Date(birth.value);
+if (isNaN(b)) {
+alert('Zadejte platné datum narození.'); e.preventDefault(); return;
+}
+const today = new Date();
+const age = today.getFullYear() - b.getFullYear() - (today < new Date(today.getFullYear(), b.getMonth(), b.getDate()) ? 1 : 0);
+if (age < 10) {
+alert('Drak musí mít alespoň 10 let.'); e.preventDefault(); return;
+}
+
+
+// počet sežraných osob: 0..1000
+const eaten = Number(document.getElementById('eaten').value);
+if (!Number.isInteger(eaten) || eaten < 0 || eaten > 1000) {
+alert('Počet sežraných osob musí být celé číslo mezi 0 a 1000.'); e.preventDefault(); return;
+}
+
+
+// kontrola souboru - musí být obrázek
+if (image.files.length === 0) { alert('Nahrajte obrázek draka.'); e.preventDefault(); return; }
+const f = image.files[0];
+if (!f.type.startsWith('image/')) { alert('Musíte nahrát soubor typu obrázek.'); e.preventDefault(); return; }
+
+
+// flight code pattern kontrola
+const flightCode = document.getElementById('flightCode');
+const re = /^[A-Z]{2}-\d{1,7}[A-Z]?$/;
+if (!re.test(flightCode.value)) { alert('Letový kód není ve správném formátu.'); e.preventDefault(); return; }
+
+
+// pokud vše OK, necháme prohlížeč odeslat (mailto). Pozor: odeslání souborů přes mailto nebude fungovat — k tomu je potřeba server.
+alert('Formulář je validní. Pokusím se odeslat formulář přes váš e-mailového klienta.');
+});
+})();
+</script>
+</body>
+</html>
