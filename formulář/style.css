@@ -1,0 +1,111 @@
+body {
+  font-family: sans-serif;
+  background: rgb(42, 170, 17);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.card {
+  position: relative;
+  background: rgb(247, 146, 225);
+  padding: 30px;
+  width: 360px;
+  border-radius: 12px;
+}
+
+/* === TLAČÍTKO === */
+#sendBtn {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  background: rgb(111,22,33);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+#sendBtn:hover {
+  transform: scale(1.2);
+  background: rgb(222,33,23);
+}
+
+/* === RESET OBRÁZEK === */
+#resetImg {
+  width: 40px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+/* animace při najetí myší */
+#resetImg:hover {
+  animation: resetHover 0.8s linear;
+}
+
+@keyframes resetHover {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  /* posun o 10px doprava + dolů */
+  25% {
+    transform: translate(10px, 10px);
+  }
+
+  /* třesení */
+  40% {
+    transform: translate(8px, 10px);
+  }
+
+  55% {
+    transform: translate(12px, 10px);
+  }
+
+  70% {
+    transform: translate(9px, 10px);
+  }
+
+  85% {
+    transform: translate(11px, 10px);
+  }
+
+  100% {
+    transform: translate(10px, 10px);
+  }
+}
+
+/* === AUTÍČKO === */
+#car {
+  position: absolute;
+  top: -40px;
+  left: -60px;
+  font-size: 30px;
+}
+
+.car-go {
+  animation: drive 3s ease-in forwards;
+}
+
+@keyframes drive {
+    to { left: 380px; }
+    from { left: -60px; }
+}
+
+/* === OZUBENÉ KOLO === */
+#gear {
+  position: absolute;
+  font-size: 26px;
+  animation: circle 6s linear infinite;
+}
+
+@keyframes circle {
+  0%   { top: -15px; left: 50%; transform: rotate(0deg); }
+  25%  { top: 50%; left: 100%; transform: rotate(90deg); }
+  50%  { top: 100%; left: 50%; transform: rotate(180deg); }
+  75%  { top: 50%; left: -15px; transform: rotate(270deg); }
+  100% { top: -15px; left: 50%; transform: rotate(360deg); }
+}

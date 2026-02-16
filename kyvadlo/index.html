@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<title>Reálné kyvadlo – fyzika</title>
+<style>
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  canvas {
+    background: #222;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+// ===== FYZIKA =====
+const g = 9.81;      // gravitace
+const L = 200;       // délka kyvadla (pixely)
+const b = 0.01;      // tlumení
+const dt = 0.016;    // časový krok (~60 FPS)
+
+let theta = Math.PI / 3; // počáteční úhel
+let omega = 0;           // úhlová rychlost
+
+// ===== SIMULACE =====
+function step() {
+  const alpha = -(g / (L / 100)) * Math.sin(theta) - b * omega;
+  omega += alpha * dt;
+  theta += omega * dt;
+}
+
+// ===== KRESLENÍ =====
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const originX = canvas.width / 2;
+  const originY = 100;
+
+  const x = originX + L * Math.sin(theta);
+  const y = originY + L * Math.cos(theta);
+
+  // tyč
+  ctx.beginPath();
+  ctx.moveTo(originX, originY);
+  ctx.lineTo(x, y);
+  ctx.strokeStyle = "white";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // závaží
+  ctx.beginPath();
+  ctx.arc(x, y, 15, 0, Math.PI * 2);
+  ctx.fillStyle = "red";
+  ctx.fill();
+}
+
+// ===== ANIMACE =====
+function animate() {
+  step();
+  draw();
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>

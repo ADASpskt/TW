@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Jednoduché počítadlo</h1>
+
+  <form id="counterForm">
+    <label for="numberInput">Číslo:</label>
+    <input type="number" id="numberInput" value="0">
+
+    <button type="button" id="increaseButton">Zvětšit o 1</button>
+    <button type="button" id="increaseButton10">Zvětšit o 10</button>
+    <button type="button" id="increaseButton100">Zvětšit o 100</button>
+
+    <!-- Nové tlačítko nápověda -->
+    <button type="button" id="helpButton">Nápověda</button>
+  </form>
+
+  <script>
+    const numberInput = document.getElementById("numberInput");
+    const button1 = document.getElementById("increaseButton");
+    const button10 = document.getElementById("increaseButton10"); 
+    const button100 = document.getElementById("increaseButton100");
+    const helpButton = document.getElementById("helpButton");
+
+    button1.addEventListener("click", function() {
+      let value = parseInt(numberInput.value) || 0;
+      numberInput.value = value + 1;
+    });
+
+    button10.addEventListener("click", function() {
+      let value = parseInt(numberInput.value) || 0;
+      numberInput.value = value + 10;
+    });
+
+    button100.addEventListener("click", function() {
+      let value = parseInt(numberInput.value) || 0;
+      numberInput.value = value + 100;
+    });
+
+    // Funkce pro nápovědu
+    helpButton.addEventListener("click", function() {
+      alert(
+        "Nápověda:\n" +
+        "- Zvětšit o 1: přičte k číslu jedničku.\n" +
+        "- Zvětšit o 10: přičte k číslu deset.\n" +
+        "- Zvětšit o 100: přičte sto.\n" +
+        "- Do políčka můžeš také napsat vlastní číslo."
+      );
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Iscrizione al concorso dei draghi</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form action="https://formsubmit.co/abauer@spskt.cz" method="POST" enctype="multipart/form-data">
+<div class="page-bg">
+<main class="form-wrap">
+<header>
+<h1>Iscrizione — concorso dei draghi</h1>
+<p><a href="index2.html">Torna alle informazioni</a></p>
+</header>
+
+<form id="dragonForm" action="mailto:competition@dragons.cz" method="post" enctype="text/plain" novalidate>
+<fieldset class="dragon-data">
+<legend>Dati del drago</legend>
+
+<label for="name">Nome del drago <span aria-hidden="true">*</span>
+<input id="name" name="name" type="text" required>
+</label>
+
+<fieldset class="inline">
+<legend>Sesso</legend>
+<label><input type="radio" name="gender" value="maschio" checked> Maschio</label>
+<label><input type="radio" name="gender" value="femmina"> Femmina</label>
+<label><input type="radio" name="gender" value="non_specificato"> Non specificato</label>
+</fieldset>
+
+<label for="birthdate">Data di nascita <span aria-hidden="true">*</span>
+<input id="birthdate" name="birthdate" type="date" >
+<small class="hint">Il drago deve avere almeno 10 anni.</small>
+</label>
+
+<label for="scales">Colore delle scaglie
+<input id="scales" name="scales" type="color" style="width:48px;height:48px;" aria-label="Colore delle scaglie">
+</label>
+
+<label for="eaten">Numero di persone mangiate
+<input id="eaten" name="eaten" type="number" min="0" max="1000" step="1" value="0">
+</label>
+
+<label for="flame">Lunghezza del soffio di fuoco (m)
+<input id="flame" name="flame" type="range" min="0" max="100" value="0">
+<output for="flame" id="flameOut">0 m</output>
+</label>
+
+<label class="checkbox"><input id="cert" name="cert" type="checkbox"> Certificato di ignifugazione</label>
+
+<label for="flightCode">Codice di volo del drago
+<input id="flightCode" name="flightCode" type="text" pattern="^[A-Z]{2}-\d{1,7}[A-Z]?$" placeholder="CZ-48P" >
+<small class="hint">Formato: XX-<numero><facoltativo lettera>, es. CZ-48P</small>
+</label>
+
+<label for="image">Immagine del drago
+<input id="image" name="image" type="file" accept="image/*" >
+<small class="hint">Accettiamo solo immagini.</small>
+</label>
+
+<label for="disciplines">Discipline (seleziona più con Ctrl)
+<select id="disciplines" name="disciplines" multiple size="3">
+<option value="fire-target">Soffio di fuoco sul bersaglio</option>
+<option value="loudest-roar">Ruggito più forte</option>
+<option value="volcano-flight">Volo tra i vulcani</option>
+</select>
+</label>
+
+</fieldset>
+
+<legend>Account</legend>
+
+<label for="email">Email (obbligatorio)
+<input id="email" name="email" type="email" placeholder="ohnivy@drak.cz">
+</label>
+
+<label for="password">Password (obbligatoria)
+<input id="password" name="password" type="password">
+</label>
+
+</fieldset>
+
+<div class="form-actions">
+<button type="submit">Invia iscrizione</button>
+<button type="reset">Reset</button>
+</div>
+
+</form>
+</main>
+</div>
+
+<script>
+// validazione di base lato client
+(function(){
+const form = document.getElementById('dragonForm');
+const birth = document.getElementById('birthdate');
+const flame = document.getElementById('flame');
+const flameOut = document.getElementById('flameOut');
+const image = document.getElementById('image');
+
+flame.addEventListener('input', ()=> flameOut.textContent = flame.value + ' m');
+
+form.addEventListener('submit', function(e){
+const b = new Date(birth.value);
+if (isNaN(b)) {
+alert('Inserisci una data di nascita valida.'); e.preventDefault(); return;
+}
+const today = new Date();
+const age = today.getFullYear() - b.getFullYear() - (today < new Date(today.getFullYear(), b.getMonth(), b.getDate()) ? 1 : 0);
+if (age < 10) {
+alert('Il drago deve avere almeno 10 anni.'); e.preventDefault(); return;
+}
+
+const eaten = Number(document.getElementById('eaten').value);
+if (!Number.isInteger(eaten) || eaten < 0 || eaten > 1000) {
+alert('Il numero di persone mangiate deve essere un intero tra 0 e 1000.'); e.preventDefault(); return;
+}
+
+if (image.files.length === 0) { alert('Carica un’immagine del drago.'); e.preventDefault(); return; }
+const f = image.files[0];
+if (!f.type.startsWith('image/')) { alert('È necessario caricare un file immagine.'); e.preventDefault(); return; }
+
+const flightCode = document.getElementById('flightCode');
+const re = /^[A-Z]{2}-\d{1,7}[A-Z]?$/;
+if (!re.test(flightCode.value)) { alert('Il codice di volo non è nel formato corretto.'); e.preventDefault(); return; }
+
+alert('Il modulo è valido. Verrà inviato tramite il client email.');
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Kolečko v kolečku</title>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+
+  <script src="script.js"></script>
+  <script>
+    const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+// střed plátna
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+
+// velké kolečko
+const bigRadius = 200;
+
+// malé kolečko
+let x = centerX;
+let y = centerY;
+const smallRadius = 15;
+
+// rychlost pohybu
+let dx = 2;
+let dy = 3;
+
+function drawCircle(x, y, r, color) {
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fillStyle = color;
+  ctx.fill();
+}
+
+// animace
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // velké kolečko
+  ctx.beginPath();
+  ctx.arc(centerX, centerY, bigRadius, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // pohyb
+  x += dx;
+  y += dy;
+
+  // vzdálenost od středu
+  const dist = Math.hypot(x - centerX, y - centerY);
+
+  // odraz od okraje velkého kolečka
+  if (dist + smallRadius > bigRadius) {
+    dx *= -1;
+    dy *= -1;
+  }
+
+  // malé kolečko
+  drawCircle(x, y, smallRadius, "red");
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+  </script>
+</body>
+</html>

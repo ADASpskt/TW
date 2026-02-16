@@ -12,18 +12,17 @@
 <header>
 <h1>Přihláška — soutěž draků</h1>
 <p><a href="index2.html">Zpět na informace</a></p>
+<p><a href="4index.html">English</a></p>
+<p><a href="3index.html">Italiano</a></p>
 </header>
-
 
 <form id="dragonForm" action="mailto:competition@dragons.cz" method="post" enctype="text/plain" novalidate>
 <fieldset class="dragon-data">
 <legend>Údaje o drakovi</legend>
 
-
 <label for="name">Jméno draka <span aria-hidden="true">*</span>
 <input id="name" name="name" type="text" required>
 </label>
-
 
 <fieldset class="inline">
 <legend>Pohlaví</legend>
@@ -32,43 +31,39 @@
 <label><input type="radio" name="gender" value="neurceno"> Neuvedeno</label>
 </fieldset>
 
-
 <label for="birthdate">Datum narození <span aria-hidden="true">*</span>
-<input id="birthdate" name="birthdate" type="date" required>
+<input id="birthdate" name="birthdate" type="date" >
 <small class="hint">Drak musí mít alespoň 10 let.</small>
 </label>
-
 
 <label for="scales">Barva šupin
 <input id="scales" name="scales" type="color" style="width:48px;height:48px;" aria-label="Barva šupin">
 </label>
 
-
 <label for="eaten">Počet sežraných osob
-<input id="eaten" name="eaten" type="number" min="0" max="1000" step="1" value="0" required>
+<input id="eaten" name="eaten" type="number" min="0" max="1000" step="1" value="0">
 </label>
-
 
 <label for="flame">Délka ohnivého dechu (m)
 <input id="flame" name="flame" type="range" min="0" max="100" value="0">
 <output for="flame" id="flameOut">0 m</output>
-</label>
+<img id="fireImg" src="fire_breath.png" alt="Oheň" style="width:40px; display:block; margin-top:10px;">
 
+
+
+</label>
 
 <label class="checkbox"><input id="cert" name="cert" type="checkbox"> Certifikát nehořlavosti</label>
 
-
 <label for="flightCode">Letový kód draka
-<input id="flightCode" name="flightCode" type="text" pattern="^[A-Z]{2}-\d{1,7}[A-Z]?$" placeholder="CZ-48P" required>
+<input id="flightCode" name="flightCode" type="text" pattern="^[A-Z]{2}-\d{1,7}[A-Z]?$" placeholder="CZ-48P" >
 <small class="hint">Formát: XX-<číslo><volitelně písmeno>, např. CZ-48P</small>
 </label>
 
-
 <label for="image">Obrázek draka
-<input id="image" name="image" type="file" accept="image/*" required>
+<input id="image" name="image" type="file" accept="image/*" >
 <small class="hint">Přijímáme pouze obrázky.</small>
 </label>
-
 
 <label for="disciplines">Disciplíny (vyberte více s Ctrl)
 <select id="disciplines" name="disciplines" multiple size="3">
@@ -78,30 +73,25 @@
 </select>
 </label>
 
-
 </fieldset>
 <legend>Účet</legend>
 
-
 <label for="email">Email (povinný)
-<input id="email" name="email" type="email" required placeholder="ohnivy@drak.cz">
+<input id="email" name="email" type="email"  placeholder="ohnivy@drak.cz">
 </label>
 <label for="password">Heslo (povinné)
-<input id="password" name="password" type="password" required>
+<input id="password" name="password" type="password" >
 </label>
 </fieldset>
-
 
 <div class="form-actions">
 <button type="submit">Odeslat přihlášku</button>
 <button type="reset">Reset</button>
 </div>
 
-
 </form>
 </main>
 </div>
-
 
 <script>
 // základní klientská validace
@@ -112,9 +102,15 @@ const flame = document.getElementById('flame');
 const flameOut = document.getElementById('flameOut');
 const image = document.getElementById('image');
 
+flame.addEventListener('input', () => {
+    const value = flame.value;
+    flameOut.textContent = value + ' m';
 
-flame.addEventListener('input', ()=> flameOut.textContent = flame.value + ' m');
-
+    // Zvětšení obrázku dle slideru
+    const fireImg = document.getElementById('fireImg');
+    const newSize = 40 + value * 2;  // základ 40 px, pak roste
+    fireImg.style.width = newSize + "px";
+});
 
 form.addEventListener('submit', function(e){
 // věk >= 10 let
@@ -128,25 +124,21 @@ if (age < 10) {
 alert('Drak musí mít alespoň 10 let.'); e.preventDefault(); return;
 }
 
-
 // počet sežraných osob: 0..1000
 const eaten = Number(document.getElementById('eaten').value);
 if (!Number.isInteger(eaten) || eaten < 0 || eaten > 1000) {
 alert('Počet sežraných osob musí být celé číslo mezi 0 a 1000.'); e.preventDefault(); return;
 }
 
-
 // kontrola souboru - musí být obrázek
 if (image.files.length === 0) { alert('Nahrajte obrázek draka.'); e.preventDefault(); return; }
 const f = image.files[0];
 if (!f.type.startsWith('image/')) { alert('Musíte nahrát soubor typu obrázek.'); e.preventDefault(); return; }
 
-
 // flight code pattern kontrola
 const flightCode = document.getElementById('flightCode');
 const re = /^[A-Z]{2}-\d{1,7}[A-Z]?$/;
 if (!re.test(flightCode.value)) { alert('Letový kód není ve správném formátu.'); e.preventDefault(); return; }
-
 
 // pokud vše OK, necháme prohlížeč odeslat (mailto). Pozor: odeslání souborů přes mailto nebude fungovat — k tomu je potřeba server.
 alert('Formulář je validní. Pokusím se odeslat formulář přes váš e-mailového klienta.');

@@ -1,0 +1,49 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #111;
+  }
+  
+  /* největší kolečko */
+  .outer {
+    width: 200px;
+    height: 200px;
+    border: 4px solid white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: pulse 3s ease-in-out infinite;
+    background: rgb(0, 109, 252);
+  }
+  
+  /* prostřední kolečko */
+  .middle {
+    width: 120px;
+    height: 120px;
+    border: 4px solid cyan;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: pulse 2s ease-in-out infinite;
+    background: rgb(0, 247, 62);
+  }
+  
+  /* nejmenší kolečko */
+  .inner {
+    width: 50px;
+    height: 50px;
+    background: red;
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  
+  /* animace nahoru a dolů */
+  @keyframes pulse {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+  }

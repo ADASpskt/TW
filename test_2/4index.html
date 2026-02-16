@@ -1,0 +1,133 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dragon Competition — Application Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form action="https://formsubmit.co/abauer@spskt.cz" method="POST" enctype="multipart/form-data">
+<div class="page-bg">
+<main class="form-wrap">
+<header>
+<h1>Application — Dragon Competition</h1>
+<p><a href="index2.html">Back to information</a></p>
+</header>
+
+<form id="dragonForm" action="mailto:competition@dragons.cz" method="post" enctype="text/plain" novalidate>
+<fieldset class="dragon-data">
+<legend>Dragon Information</legend>
+
+<label for="name">Dragon Name <span aria-hidden="true">*</span>
+<input id="name" name="name" type="text" required>
+</label>
+
+<fieldset class="inline">
+<legend>Gender</legend>
+<label><input type="radio" name="gender" value="male" checked> Male</label>
+<label><input type="radio" name="gender" value="female"> Female</label>
+<label><input type="radio" name="gender" value="unspecified"> Unspecified</label>
+</fieldset>
+
+<label for="birthdate">Date of Birth <span aria-hidden="true">*</span>
+<input id="birthdate" name="birthdate" type="date" >
+<small class="hint">The dragon must be at least 10 years old.</small>
+</label>
+
+<label for="scales">Scale Color
+<input id="scales" name="scales" type="color" style="width:48px;height:48px;" aria-label="Scale color">
+</label>
+
+<label for="eaten">Number of People Eaten
+<input id="eaten" name="eaten" type="number" min="0" max="1000" step="1" value="0">
+</label>
+
+<label for="flame">Flame Breath Length (m)
+<input id="flame" name="flame" type="range" min="0" max="100" value="0">
+<output for="flame" id="flameOut">0 m</output>
+</label>
+
+<label class="checkbox"><input id="cert" name="cert" type="checkbox"> Fireproof Certificate</label>
+
+<label for="flightCode">Dragon Flight Code
+<input id="flightCode" name="flightCode" type="text" pattern="^[A-Z]{2}-\d{1,7}[A-Z]?$" placeholder="CZ-48P" >
+<small class="hint">Format: XX-<number><optional letter>, e.g. CZ-48P</small>
+</label>
+
+<label for="image">Dragon Image
+<input id="image" name="image" type="file" accept="image/*" >
+<small class="hint">Only images are accepted.</small>
+</label>
+
+<label for="disciplines">Disciplines (hold Ctrl to select multiple)
+<select id="disciplines" name="disciplines" multiple size="3">
+<option value="fire-target">Fire Breathing at Target</option>
+<option value="loudest-roar">Loudest Roar</option>
+<option value="volcano-flight">Flight Between Volcanoes</option>
+</select>
+</label>
+
+</fieldset>
+
+<legend>Account</legend>
+
+<label for="email">Email (required)
+<input id="email" name="email" type="email" placeholder="firedragon@dragon.cz">
+</label>
+
+<label for="password">Password (required)
+<input id="password" name="password" type="password">
+</label>
+
+</fieldset>
+
+<div class="form-actions">
+<button type="submit">Submit Application</button>
+<button type="reset">Reset</button>
+</div>
+
+</form>
+</main>
+</div>
+
+<script>
+// Basic client-side validation
+(function(){
+const form = document.getElementById('dragonForm');
+const birth = document.getElementById('birthdate');
+const flame = document.getElementById('flame');
+const flameOut = document.getElementById('flameOut');
+const image = document.getElementById('image');
+
+flame.addEventListener('input', ()=> flameOut.textContent = flame.value + ' m');
+
+form.addEventListener('submit', function(e){
+const b = new Date(birth.value);
+if (isNaN(b)) {
+alert('Please enter a valid date of birth.'); e.preventDefault(); return;
+}
+const today = new Date();
+const age = today.getFullYear() - b.getFullYear() - (today < new Date(today.getFullYear(), b.getMonth(), b.getDate()) ? 1 : 0);
+if (age < 10) {
+alert('The dragon must be at least 10 years old.'); e.preventDefault(); return;
+}
+
+const eaten = Number(document.getElementById('eaten').value);
+if (!Number.isInteger(eaten) || eaten < 0 || eaten > 1000) {
+alert('The number of eaten people must be an integer between 0 and 1000.'); e.preventDefault(); return;
+}
+
+if (image.files.length === 0) { alert('Upload an image of the dragon.'); e.preventDefault(); return; }
+const f = image.files[0];
+if (!f.type.startsWith('image/')) { alert('You must upload an image file.'); e.preventDefault(); return; }
+
+const flightCode = document.getElementById('flightCode');
+const re = /^[A-Z]{2}-\d{1,7}[A-Z]?$/;
+if (!re.test(flightCode.value)) { alert('Flight code is not in the correct format.'); e.preventDefault(); return; }
+
+alert('The form is valid. Attempting to send via your email client.');
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Útulek</title>
+</head>
+<body>
+    <form action="mailto:abauer@spskt.cz" method="post" enctype="text/plain">
+
+        <h3>Přihláška zvířete do útulku</h3>
+        <label for="jmeno">Zadejte jméno svého mazlíčka:</label><br>
+        <input type="text" id="jmeno" name="jmeno" minlength="2" required>
+        <br><br>
+        <label for="druh">Vyberte druh zvířete:</label><br>
+        <select id="druh" name="druh" required>
+            <option value="">--Vyberte--</option>
+            <option value="pes">Pes</option>
+            <option value="kocka">Kočka</option>
+            <option value="králík">Králík</option>
+            <option value="pták">Pták</option>
+            <option value="jiné">Jiné</option>
+        </select>
+        <br><br>
+        <label for="vek">Věk zvířete (v letech):</label><br>
+        <input type="number" id="vek" name="vek" min="0" max="25" required>
+        <br><br>
+        <p>Vyberte pohlaví zvířete:</p>
+
+  <input type="radio" id="samec" name="pohlavi" value="samec" required>
+  <label for="samec">Samec</label><br>
+
+  <input type="radio" id="samice" name="pohlavi" value="samice" required>
+  <label for="samice">Samice</label><br><br>
+  <label for="barva">Barva srsti (volitelné):</label><br>
+  <input type="color" id="barva" name="barva">
+  <br><br>
+  <p>Vyberte povahu zvířete (můžete zvolit více možností):</p>
+  <input type="checkbox" id="pratelsky" name="povaha" value="přátelský">
+  <label for="pratelsky">Přátelský</label><br>
+
+  <input type="checkbox" id="hravy" name="povaha" value="hravý">
+  <label for="hravy">Hravý</label><br>
+
+  <input type="checkbox" id="klidny" name="povaha" value="klidný">
+  <label for="klidny">Klidný</label><br>
+
+  <input type="checkbox" id="bojacny" name="povaha" value="bojácný">
+  <label for="bojacny">Bojácný</label><br><br>
+  <label for="tyden">Předpokládaný týden přijetí:</label><br>
+  <input type="week" id="tyden" name="tyden" required>
+  <br><br>
+  <label for="foto">Přiložte fotku zvířete (volitelné):</label><br>
+  <input type="file" id="foto" name="foto" accept="image/*">
+  <br><br>
+  <input type="submit" value="Odeslat přihlášku">
+</form>
+
+
+    </form>
+</body>
+</html>
