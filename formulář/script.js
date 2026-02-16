@@ -17,4 +17,15 @@ resetImg.addEventListener("click", () => {
 /* AUTÍČKO PO NAČTENÍ */
 window.addEventListener("load", () => {
   car.classList.add("car-go");
-});
+})
+
+
+let size = 40; // počáteční velikost
+
+
+setInterval(() => {
+    size += 2;               // o kolik se zvětší
+    car.style.fontSize = size + "px";
+}, 100); // každých 100 ms
+``
+

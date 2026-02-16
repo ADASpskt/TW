@@ -22,18 +22,17 @@ body {
   margin-top: 15px;
   padding: 10px;
   width: 100%;
-  background: rgb(111,22,33);
+  background: rgb(235, 92, 109);
   color: white;
   border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s, background 0.2s;
 }
 
 #sendBtn:hover {
-  transform: scale(1.2);
   background: rgb(222,33,23);
+  transform: scale(1.2) rotate(2deg);
 }
-
 /* === RESET OBRÁZEK === */
 #resetImg {
   width: 40px;
@@ -80,32 +79,67 @@ body {
 
 /* === AUTÍČKO === */
 #car {
-  position: absolute;
-  top: -40px;
-  left: -60px;
+  position: fixed;     /* DŮLEŽITÉ – vůči celé stránce */
+  top: 0px;           /* výška = horní hrana karty */
+  left: -60px;         /* start mimo obrazovku */
   font-size: 30px;
+  z-index: 1000;
+
+  transform: scaleX(-1);
 }
 
 .car-go {
-  animation: drive 3s ease-in forwards;
+  animation: drive 4s linear 3 forwards;
+}
+@keyframes drive {
+  from {
+    left: -60px;
+  }
+  to {
+    left: 100vw;       /* úplně na pravý okraj stránky */
+  }
 }
 
-@keyframes drive {
-    to { left: 380px; }
-    from { left: -60px; }
-}
 
 /* === OZUBENÉ KOLO === */
 #gear {
-  position: absolute;
-  font-size: 26px;
-  animation: circle 6s linear infinite;
+  position: fixed;      /* vůči celé stránce */
+  top: 0;
+  left: 0;
+  font-size: 30px;
+  z-index: 1000;
+  animation: moveCorners 8s linear infinite;
 }
 
-@keyframes circle {
-  0%   { top: -15px; left: 50%; transform: rotate(0deg); }
-  25%  { top: 50%; left: 100%; transform: rotate(90deg); }
-  50%  { top: 100%; left: 50%; transform: rotate(180deg); }
-  75%  { top: 50%; left: -15px; transform: rotate(270deg); }
-  100% { top: -15px; left: 50%; transform: rotate(360deg); }
+/* pohyb po rozích stránky + rotace */
+@keyframes moveCorners {
+  0% {
+    top: 0;
+    left: 0;
+    transform: rotate(0deg);
+  }
+
+  25% {
+    top: 0;
+    left: calc(100vw - 30px);
+    transform: rotate(90deg);
+  }
+
+  50% {
+    top: calc(100vh - 30px);
+    left: calc(100vw - 30px);
+    transform: rotate(180deg);
+  }
+
+  75% {
+    top: calc(100vh - 30px);
+    left: 0;
+    transform: rotate(270deg);
+  }
+
+  100% {
+    top: 0;
+    left: 0;
+    transform: rotate(360deg);
+  }
 }
