@@ -1,95 +1,47 @@
 <!doctype html>
 <html lang="cs">
-<link rel="stylesheet" href="style.css">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Svatební formulář — Svatební business</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Svatební formulář</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+  <form action="https://formsubmit.co/abauer@spskt.cz" method="POST" enctype="multipart/form-data"></form>
 <div class="container">
-<div class="card">
-<h1>Formulář — Svatební business</h1>
-<form id="weddingForm" novalidate>
-<label for="maidenName">Jméno novomanželky za svobodna</label>
-<input id="maidenName" name="maidenName" type="text" placeholder="Jan Novák" required />
+  <div class="card">
 
+    <!-- autíčko -->
+    <div id="car">🚗</div>
 
-<div class="controls">
-<div class="checkbox">
-<input id="keepSurname" name="keepSurname" type="checkbox" />
-<label for="keepSurname">Nechá si své příjmení</label>
-</div>
-<div style="margin-left:auto" class="small">* Pole označená jsou povinná</div>
-</div>
+    <!-- ozubené kolo -->
+    <div id="gear">⚙</div>
 
+    <h1>Formulář — Svatební business</h1>
+<br><br>
+    <form id="weddingForm" novalidate>
+      <label>Jméno novomanželky</label>
+      <input type="text" required>
+<br><br>
+      <label>Email</label>
+      <input type="email" required>
+<br><br>
+      <label>Barva svatby</label>
+      <input id="color" type="color" value="#e6a8ff">
 
-<label for="email">Email</label>
-<input id="email" name="email" type="email" placeholder="email@priklad.cz" required />
+      <!-- animované tlačítko -->
+      <button type="submit" id="sendBtn">Odeslat</button>
 
+      <!-- reset obrázek -->
+      <img src="https://www.freeiconspng.com/uploads/refresh-icon-png-2.png"
+      id="resetImg"
+      alt="reset formuláře">
 
-<div class="row">
-<div class="col">
-<label for="weddingDate">Datum svatby</label>
-<input id="weddingDate" name="weddingDate" type="date" required />
-</div>
-<div class="col">
-<label for="color">Barva svatby</label>
-<input id="color" name="color" type="color" value="#e6a8ff" />
-</div>
-</div>
-
-
-<label>Výběr hudby při obřadu</label>
-<div class="music-inputs">
-<label><input type="radio" name="music" value="živá" checked /> Živá</label>
-<label><input type="radio" name="music" value="ze záznamu" /> Ze záznamu</label>
+    </form>
+  </div>
 </div>
 
-
-<label for="cakeHeight">Výška svatebního dortu (cm)</label>
-<input id="cakeHeight" name="cakeHeight" type="number" min="5" max="200" placeholder="např. 30" required />
-<div class="hint">Zadaná hodnota v centimetrech. Minimálně 5 cm.</div>
-
-
-<div style="margin-top:12px" class="checkbox">
-<input id="gdpr" name="gdpr" type="checkbox" required />
-<label for="gdpr">Souhlasím se zpracováním osobních údajů (GDPR)</label>
-</div>
-
-
-<div id="output" class="result" style="display:none"></div>
-
-<label for="depart">Místo odletu (cm)</label>
-<input id="depart" name="depart" type="tel" placeholder="např. A12" required />
-<div class="hint">Zadaná hodnota je číslo brány na letišti</div>
-
-<label for="dances"> vyberoblibenetance:</label><br>
-<select id="dances" name="dances" multiple size="4">
-  <option value="waltz">Valčík</option>
-  <option value="tango">Tango</option>
-  <option value="foxtrot">Foxtrot</option>
-  <option value="salsa">Salsa</option>
-  <option value="hiphop">Hip Hop</option>
-  <option value="breakdance">Breakdance</option>
-  <option value="swing">Swing</option>
-  <option value="rumba">Rumba</option>
-  <option value="cha-cha">Cha-Cha</option>
-  <option value="jive">Jive</option>
-  <option value="quickstep">Quickstep</option>
-  <option value="polka">Polka</option>
-  <option value="other">Jiný</option>
-  <option value="none">Žádný</option>
-  <option value="all">Všechny</option>
-
-
-</form>
-</div>
-</div>
-<script>
-const form = document.getElementById('weddingForm');
-const output = document.getElementById('output');
-const colorInput = document.getElementById('color');
-</script>
+<script src="script.js"></script>
+</body>
 </html>
