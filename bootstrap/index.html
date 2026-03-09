@@ -10,6 +10,52 @@
 
 </head>
 <body>
+
+<!-- <body> -->
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container">
+
+
+      <!-- Logo / značka -->
+      <a class="navbar-brand" href="#">Moje stránka</a>
+
+
+      <!-- Hamburger tlačítko -->
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#mojeMenu">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+
+      <!-- Sbalitelná část -->
+      <div class="collapse navbar-collapse" id="mojeMenu">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="#">Domů</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#">O nás</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" href="#">Kontakt</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="#"><i class="bi bi-door-open"></i></a>
+                
+              </li>
+          </ul>
+      </div>
+
+
+  </div>
+</nav>
+
+
+<!-- </body> -->
+
+
 <div class="container mt-5">
     <div class="row g-2">
         <div class="col">Sloupec 1
@@ -21,7 +67,9 @@
               <a href="#" class="btn btn-primary">Go somewhere</a></div>
             </div>
           </div>
-
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
         <div class="col">Sloupec 2</div>
         <div class="card" style="width: 18rem;">
             <img src="..." class="card-img-top" alt="...">
@@ -30,6 +78,7 @@
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
               <a href="#" class="btn btn-primary">Go somewhere</a></div>
         </div>
+
         <div class="col">Sloupec 3</div>
         <div class="card" style="width: 18rem;">
             <img src="..." class="card-img-top" alt="...">
@@ -39,7 +88,16 @@
               <a href="#" class="btn btn-primary">Go somewhere</a></div>
       </div>
     </div>
-
+    <div class="btn-group">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Right-aligned menu example
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><button class="dropdown-item" href="https://spskt.cz/spskt/" type="button">spš</button></li>
+          <li><button class="dropdown-item" type="button">Another action</button></li>
+          <li><button class="dropdown-item" type="button">Something else here</button></li>
+        </ul>
+      </div>
     <h1 class="text-warning">Hello Bootstrap</h1>
     <p class="text-muted">Toto je moje první stránka s Bootstrapem.</p>
     <button class="btn btn-outline-success btn-lg">Klikni na mě</button>
@@ -53,6 +111,19 @@
          <img src="https://cdn.aukro.cz/images/sk1721380860739/telefonni-karta-pikove-eso-c-189-200589688.jpeg" class="card-img-bottom" alt="Placeholder Image">
     </div>     
 </div>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Karta Bootstrap</h5>
+        <p class="card-text">Toto je jednoduchá karta vytvořená pomocí Bootstrapu.</p>
+        <a href="#" class="btn btn-primary">Více informací</a>
+    </div>
+     <img src="https://naturenibble.com/wp-content/uploads/2021/11/17-tree-squirrel-rest-on-branch-Dec32021-1.jpg" class="card-img-bottom" alt="Placeholder Image">
+</div>     
+</div>
+<div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
 </body>
 
 
