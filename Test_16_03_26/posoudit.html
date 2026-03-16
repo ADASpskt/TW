@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Posoudit vůni</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<div class="container-fluid">
+
+<a class="navbar-brand" href="index.html">Vonný bar</a>
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarNav">
+
+<ul class="navbar-nav">
+
+<li class="nav-item">
+<a class="nav-link" href="index.html">Náš bar</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link active" href="posoudit.html">Posoudit vůni</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link" href="klub.html">Můj GitHub</a>
+</li>
+
+</ul>
+
+</div>
+</div>
+</nav>
+
+<main class="container mt-4">
+
+<h2 class="text-center mb-4">Posoudit vůni</h2>
+
+<form class="mx-auto shadow" style="max-width:600px; background:#d8ecff; border:2px solid black; padding:20px;">
+
+<div class="mb-3">
+<label class="form-label">Název vůně *</label>
+<input type="text" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label class="form-label">Typ vůně</label>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="typ">
+<label class="form-check-label">Květinová</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="typ">
+<label class="form-check-label">Ovocná</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="typ">
+<label class="form-check-label">Kořeněná</label>
+</div>
+
+<div class="form-check">
+<input class="form-check-input" type="radio" name="typ">
+<label class="form-check-label">Experimentální</label>
+</div>
+
+</div>
+
+<div class="mb-3">
+<label class="form-label">Datum vytvoření</label>
+<input type="date" class="form-control">
+</div>
+
+<div class="mb-3">
+<label class="form-label">
+Intenzita vůně: <span id="rangeValue">50</span>
+</label>
+
+<input type="range"
+class="form-range"
+min="0"
+max="100"
+value="50"
+oninput="rangeValue.textContent=this.value">
+</div>
+
+<div class="mb-3">
+<label class="form-label">Barva vůně</label>
+<input type="color" class="form-control form-control-color">
+</div>
+
+<div class="mb-3">
+<label class="form-label">Kód vzorku</label>
+<input type="text"
+class="form-control"
+pattern="[A-Z]{2}-[0-9]{2,4}[A-Z]?"
+placeholder="VB-123A"
+required>
+</div>
+
+<div class="mb-3">
+<label class="form-label">Obrázek vzorku</label>
+<input type="file" class="form-control">
+</div>
+
+<div class="mb-3">
+<label class="form-label">Email</label>
+<input type="email" class="form-control" required>
+</div>
+
+<div class="mb-3">
+<label class="form-label">Potvrdit email</label>
+<input type="email" class="form-control" required>
+</div>
+
+<div class="d-flex gap-2">
+<button type="reset" class="btn btn-secondary">Reset</button>
+<button type="submit" class="btn btn-primary">Odeslat</button>
+</div>
+
+</form>
+
+
+<!-- Naše vůně -->
+<section class="mt-5">
+
+<h2 class="text-center mb-4">Naše vůně</h2>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+
+<!-- karta 1 -->
+<div class="col">
+<div class="card shadow h-100">
+
+<img src="https://tse2.mm.bing.net/th/id/OIP.IpE39O-3sjNJEguJnA6dSQHaEo?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top">
+
+<div class="card-body">
+<h5 class="card-title">Letní květ</h5>
+<p class="card-text">Lehká květinová vůně inspirovaná letní loukou.</p>
+<a href="#" class="btn btn-primary">Provoňet</a>
+</div>
+
+</div>
+</div>
+
+<!-- karta 2 -->
+<div class="col">
+<div class="card shadow h-100">
+
+<img src="https://www.epochtimes.cz/wp-content/uploads/2026/03/ovoce.jpg" class="card-img-top">
+
+<div class="card-body">
+<h5 class="card-title">Ovocný sen</h5>
+<p class="card-text">Sladká ovocná vůně plná energie a svěžesti.</p>
+<a href="#" class="btn btn-primary">Provoňet</a>
+</div>
+
+</div>
+</div>
+
+<!-- karta 3 -->
+<div class="col">
+<div class="card shadow h-100">
+
+<img src="https://tse2.mm.bing.net/th/id/OIP.je6cntGB_O6xSBIJY1ixfAHaFU?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top">
+
+<div class="card-body">
+<h5 class="card-title">Kořeněná noc</h5>
+<p class="card-text">Intenzivní vůně s nádechem orientálního koření.</p>
+<a href="#" class="btn btn-primary">Provoňet</a>
+</div>
+
+</div>
+</div>
+
+<!-- karta 4 -->
+<div class="col">
+<div class="card shadow h-100">
+
+<img src="https://stassargrafmonumenten.nl/wp-content/uploads/2023/04/bos7.jpg" class="card-img-top">
+
+<div class="card-body">
+<h5 class="card-title">Tajemství lesa</h5>
+<p class="card-text">Dřevitá vůně připomínající ranní les.</p>
+<a href="#" class="btn btn-primary">Provoňet</a>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
